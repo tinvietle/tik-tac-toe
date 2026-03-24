@@ -3,3 +3,6 @@ The project uses structured markdown instructions to guide the LLM to do the pro
 To construct the prompt, learn Prompt Engineeer template given by Anthropic.
 LLM Model: GPT-5.3-Codex
 VSCode as Chat Service
+
+## Week 1
+Java CLI Tic Tac Toe
