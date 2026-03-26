@@ -18,7 +18,7 @@ public class CliMain {
         }
 
         try (Scanner scanner = new Scanner(System.in)) {
-            GameView view = new CliGameView(scanner);
+            GameView view = new CliGameView();
 
             Board board = new Board();
             Player user     = new HumanPlayer(1, scanner);
