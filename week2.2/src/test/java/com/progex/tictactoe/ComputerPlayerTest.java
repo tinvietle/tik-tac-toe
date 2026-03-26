@@ -8,6 +8,14 @@ import org.junit.jupiter.api.Test;
 class ComputerPlayerTest {
 
     @Test
+    void getMarkAndNameReturnExpectedValues() {
+        ComputerPlayer player = new ComputerPlayer(2);
+
+        assertEquals(2, player.getMark());
+        assertEquals("Computer", player.getName());
+    }
+
+    @Test
     void chooseMoveReturnsFirstFreePosition() {
         Board board = new Board();
         board.placeMark(1, 1);
@@ -28,5 +36,17 @@ class ComputerPlayerTest {
         ComputerPlayer player = new ComputerPlayer(2);
 
         assertThrows(IllegalStateException.class, () -> player.chooseMove(board));
+    }
+
+    @Test
+    void chooseMoveProgressesToNextFreePosition() {
+        Board board = new Board();
+        ComputerPlayer player = new ComputerPlayer(2);
+
+        assertEquals(1, player.chooseMove(board));
+        board.placeMark(1, 1);
+        assertEquals(2, player.chooseMove(board));
+        board.placeMark(2, 1);
+        assertEquals(3, player.chooseMove(board));
     }
 }

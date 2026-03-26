@@ -57,6 +57,43 @@ class BoardTest {
     }
 
     @Test
+    void hasWinnerDetectsRemainingWinningLines() {
+        int[][] winningLines = {
+            {4, 5, 6},
+            {7, 8, 9},
+            {2, 5, 8},
+            {3, 6, 9},
+            {3, 5, 7}
+        };
+
+        for (int[] line : winningLines) {
+            Board board = new Board();
+            board.placeMark(line[0], 2);
+            board.placeMark(line[1], 2);
+            board.placeMark(line[2], 2);
+            assertTrue(board.hasWinner(2));
+        }
+    }
+
+    @Test
+    void hasWinnerIsFalseForIncompleteLine() {
+        Board board = new Board();
+        board.placeMark(1, 1);
+        board.placeMark(2, 1);
+
+        assertFalse(board.hasWinner(1));
+    }
+
+    @Test
+    void isFreeReflectsEmptyAndOccupiedState() {
+        Board board = new Board();
+
+        assertTrue(board.isFree(5));
+        board.placeMark(5, 1);
+        assertFalse(board.isFree(5));
+    }
+
+    @Test
     void hasFreeCellBecomesFalseWhenBoardIsFull() {
         Board board = new Board();
         for (int i = 1; i <= 9; i++) {

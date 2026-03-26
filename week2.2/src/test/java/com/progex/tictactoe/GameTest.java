@@ -1,13 +1,16 @@
 package com.progex.tictactoe;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Queue;
 
 import org.junit.jupiter.api.Test;
@@ -15,43 +18,58 @@ import org.junit.jupiter.api.Test;
 class GameTest {
 
     @Test
-    void playStopsWhenFirstPlayerWins() {
+    void playStopsWhenFirstPlayerWinsAndNotifiesView() {
         Board board = new Board();
         Player p1 = new SequencePlayer("P1", 1, 1, 2, 3);
-        Player p2 = new SequencePlayer("P2", 2, 4, 5, 6);
-        Game game = new Game(board, p1, p2);
+        Player p2 = new SequencePlayer("P2", 2, 4, 5);
+        RecordingGameView view = new RecordingGameView();
+        Game game = new Game(board, p1, p2, view);
 
-        String output = captureOutput(game::play);
+        game.play();
 
         assertTrue(board.hasWinner(1));
-        assertTrue(output.contains("P1 wins."));
+        assertFalse(view.drawCalled);
+        assertNotNull(view.winner);
+        assertEquals("P1", view.winner.getName());
+        assertEquals(1, view.gameStartCalls);
+        assertEquals(5, view.moveEvents.size());
+        assertIterableEquals(
+            Arrays.asList("P1@1", "P2@4", "P1@2", "P2@5", "P1@3"),
+            view.moveEvents
+        );
     }
 
     @Test
-    void playEndsInDrawWhenBoardIsFullWithoutWinner() {
+    void playEndsInDrawWhenBoardIsFullWithoutWinnerAndNotifiesView() {
         Board board = new Board();
         Player p1 = new SequencePlayer("P1", 1, 1, 3, 4, 8, 9);
         Player p2 = new SequencePlayer("P2", 2, 2, 5, 6, 7);
-        Game game = new Game(board, p1, p2);
+        RecordingGameView view = new RecordingGameView();
+        Game game = new Game(board, p1, p2, view);
 
-        String output = captureOutput(game::play);
+        game.play();
 
         assertFalse(board.hasWinner(1));
         assertFalse(board.hasWinner(2));
         assertFalse(board.hasFreeCell());
-        assertTrue(output.contains("Game finished (draw). No free cells left."));
+        assertTrue(view.drawCalled);
+        assertNull(view.winner);
+        assertEquals(1, view.gameStartCalls);
+        assertEquals(9, view.moveEvents.size());
     }
 
-    private static String captureOutput(Runnable action) {
-        PrintStream originalOut = System.out;
-        ByteArrayOutputStream output = new ByteArrayOutputStream();
-        try {
-            System.setOut(new PrintStream(output, true, StandardCharsets.UTF_8));
-            action.run();
-            return output.toString(StandardCharsets.UTF_8);
-        } finally {
-            System.setOut(originalOut);
-        }
+    @Test
+    void playDoesNotTriggerDrawWhenWinnerExists() {
+        Board board = new Board();
+        Player p1 = new SequencePlayer("P1", 1, 1, 2, 3);
+        Player p2 = new SequencePlayer("P2", 2, 4, 5);
+        RecordingGameView view = new RecordingGameView();
+        Game game = new Game(board, p1, p2, view);
+
+        game.play();
+
+        assertNotNull(view.winner);
+        assertFalse(view.drawCalled);
     }
 
     private static final class SequencePlayer implements Player {
@@ -82,6 +100,38 @@ class GameTest {
                 throw new IllegalStateException("No moves left for test player " + name);
             }
             return next;
+        }
+    }
+
+    private static final class RecordingGameView implements GameView {
+        private int gameStartCalls;
+        private final List<String> moveEvents = new ArrayList<>();
+        private Player winner;
+        private boolean drawCalled;
+
+        @Override
+        public void onGameStart(Board board) {
+            gameStartCalls++;
+        }
+
+        @Override
+        public void onMoveMade(Board board, Player player, int position) {
+            moveEvents.add(player.getName() + "@" + position);
+        }
+
+        @Override
+        public void onPlayerWins(Player winner) {
+            this.winner = winner;
+        }
+
+        @Override
+        public void onDraw() {
+            this.drawCalled = true;
+        }
+
+        @Override
+        public int requestMove(Board board, Player player) {
+            throw new UnsupportedOperationException("requestMove is not used in this test setup");
         }
     }
 }

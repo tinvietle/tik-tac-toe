@@ -11,6 +11,16 @@ import org.junit.jupiter.api.Test;
 class HumanPlayerTest {
 
     @Test
+    void getMarkAndNameReturnExpectedValues() {
+        Scanner scanner = new Scanner(new ByteArrayInputStream(new byte[0]));
+        HumanPlayer player = new HumanPlayer(1, scanner);
+
+        assertEquals(1, player.getMark());
+        assertEquals("User", player.getName());
+        scanner.close();
+    }
+
+    @Test
     void chooseMoveSkipsInvalidInputUntilValidFreePosition() {
         Board board = new Board();
         board.placeMark(1, 2);
@@ -24,6 +34,22 @@ class HumanPlayerTest {
         int move = player.chooseMove(board);
 
         assertEquals(2, move);
+        scanner.close();
+    }
+
+    @Test
+    void chooseMoveHandlesExtraInvalidInputShapes() {
+        Board board = new Board();
+
+        String input = String.join(System.lineSeparator(), "", "   ", "-1", "999", "3.5", " 4 ")
+            + System.lineSeparator();
+        Scanner scanner = new Scanner(new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8)));
+
+        HumanPlayer player = new HumanPlayer(1, scanner);
+
+        int move = player.chooseMove(board);
+
+        assertEquals(4, move);
         scanner.close();
     }
 }

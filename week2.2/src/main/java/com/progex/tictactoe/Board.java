@@ -54,6 +54,10 @@ public class Board {
         return false;
     }
 
+    public int[] getCells() {
+        return Arrays.copyOf(cells, cells.length);
+    }
+
     public void printReferenceMap() {
         System.out.println("Map:");
         System.out.println("|1|2|3|");
