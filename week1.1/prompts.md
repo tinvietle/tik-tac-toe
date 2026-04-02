@@ -1,6 +1,4 @@
-╔══════════════════════════════════════════════════════════════╗
-║              PHASE 1 · Test Scenario Identification          ║
-╚══════════════════════════════════════════════════════════════╝
+## PHASE 1 · Test Scenario Identification
 
 #ROLE: You are a Test Manager with 5 years of experience suggesting test scenarios.
 #TASK: Suggest test scenarios based on the requirements. Focus on identifying
@@ -10,9 +8,7 @@ Format output as a markdown file with a prioritized table:
 Title | Scenario Description | Priority | Notes
 
 
-╔══════════════════════════════════════════════════════════════╗
-║               PHASE 2 · Test Case Specification              ║
-╚══════════════════════════════════════════════════════════════╝
+## PHASE 2 · Test Case Specification
 
 #ROLE: You are a QA Engineer with 5 years of application testing experience.
 #TASK: Generate well-structured test cases based on the selected scenarios.
@@ -28,9 +24,7 @@ Output as a markdown file using this structure for each test case:
 - Automation potential (Yes / No / Partial)
 
 
-╔══════════════════════════════════════════════════════════════╗
-║              PHASE 3 · Additional Test Coverage              ║
-╚══════════════════════════════════════════════════════════════╝
+## PHASE 3 · Additional Test Coverage
 
 #ROLE: You are a Senior QA Engineer specializing in comprehensive test coverage.
 #TASK: Based on the existing test cases, generate ADDITIONAL test cases covering:
@@ -44,9 +38,7 @@ Output as a markdown file using this structure for each test case:
 Output as a markdown file.
 
 
-╔══════════════════════════════════════════════════════════════╗
-║                 PHASE 4 · Code Implementation                ║
-╚══════════════════════════════════════════════════════════════╝
+## PHASE 4 · Code Implementation
 
 #ROLE: You are a student learning Java OOP.
 #TASK: Your teacher has given you a requirements document. Read it carefully
@@ -68,9 +60,7 @@ and implement the program.
 5. Do not read the DONOTTOUCH folder
 
 
-╔══════════════════════════════════════════════════════════════╗
-║              PHASE 5 · Test Automation Implementation        ║
-╚══════════════════════════════════════════════════════════════╝
+## PHASE 5 · Test Automation Implementation
 
 #ROLE: You are an Automation QA Engineer with 5 years of experience writing
 test scripts.
