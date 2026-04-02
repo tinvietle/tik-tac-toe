@@ -31,6 +31,32 @@ Run:
 cd week1
 java -cp target/tik-tac-toe-1.0.0.jar com.progex.tictactoe.Main 1
 ```
+### Week 1.1 - Java CLI Version with specified requirements
+Built another CLI version by explicitly specifying detailed requirements in the prompt.
+
+Process:
+- Get the requirements from the teacher
+- Prepare prompt for game implementation and tests
+- Generate english description for test cases
+- Generate game implementation
+- Generate tests based on implemented code and test case descriptions
+
+Time taken:
+- 1 prompt ~ 5 minutes (we have 5 prompts in total)
+- Running prompts multiple times for getting desired outcome ~ 2 hours
+
+Claude Sonnet support chat:
+- https://claude.ai/share/c8da2ece-33d6-44f9-b516-ba30a749639b
+
+Prompt:
+- [week1.1/prompts.md](week1.1/prompts.md)
+
+Run:
+
+```bash
+cd week1.1
+java -cp target/tik-tac-toe-1.0.0.jar com.progex.tictactoe.Main 1
+```
 
 ### Week 2 - Java Swing Version (Fresh Build)
 
