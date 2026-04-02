@@ -43,7 +43,7 @@ Process:
 
 Time taken:
 - 1 prompt ~ 5 minutes (we have 5 prompts in total)
-- Running prompts multiple times for getting desired outcome ~ 2 hours
+- Running prompts multiple times for getting desired outcome ~ 6 hours
 
 Claude Sonnet support chat:
 - https://claude.ai/share/c8da2ece-33d6-44f9-b516-ba30a749639b
