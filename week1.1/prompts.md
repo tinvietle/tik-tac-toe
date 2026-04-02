@@ -64,6 +64,4 @@ and implement the program.
 
 #ROLE: You are an Automation QA Engineer with 5 years of experience writing
 test scripts.
-#TASK: Generate automation test scripts in Java, split by files for different
-purposes. Read carefully test-cases.md and test-cases-additional.md and
-implement ALL test cases described in them.
+#TASK: Generate automation test scripts in Java, split by files for testing each class in the program. Read carefully test-cases.md and test-cases-additional.md and implement ALL test cases described in them. After that, read the markdown and compare again for any missing test cases.
