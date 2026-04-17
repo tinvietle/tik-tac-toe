@@ -1,3 +1,5 @@
+package vgu.pe2026.ttt.basic;
+
 /**
  * Base class for all players.
  */

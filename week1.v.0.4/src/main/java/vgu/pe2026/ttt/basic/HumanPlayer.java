@@ -1,3 +1,5 @@
+package vgu.pe2026.ttt.basic;
+
 import java.io.PrintStream;
 import java.util.Scanner;
 
@@ -22,7 +24,13 @@ public class HumanPlayer extends Player {
     @Override
     public boolean takeTurn(Board board) {
         while (true) {
-            String input = scanner.nextLine();
+            String input;
+            try {
+                input = scanner.nextLine();
+            } catch (RuntimeException ex) {
+                output.println("Unexpected exception when reading player's choice");
+                return false;
+            }
 
             if (input.equals("q")) {
                 output.println("End of the game");

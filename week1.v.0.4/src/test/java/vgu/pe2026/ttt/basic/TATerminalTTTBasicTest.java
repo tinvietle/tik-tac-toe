@@ -1,3 +1,5 @@
+package vgu.pe2026.ttt.basic;
+
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -21,7 +23,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-public class TerminalTTTBasicTest {
+public class TATerminalTTTBasicTest {
 
     private static final String INVALID_OPTION_MSG = "Please, input a valid option [1-2]";
     private static final String INVALID_NUMBER_MSG = "Please, input a valid number [1-9]";

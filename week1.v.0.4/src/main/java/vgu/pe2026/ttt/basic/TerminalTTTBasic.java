@@ -1,3 +1,5 @@
+package vgu.pe2026.ttt.basic;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;

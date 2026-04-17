@@ -5,14 +5,13 @@
              http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>tiktactoe</groupId>
-    <artifactId>week1</artifactId>
+    <groupId>vgu.pe2026.ttt.basic</groupId>
+    <artifactId>tttbasic</artifactId>
     <version>0.4</version>
     <packaging>jar</packaging>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.release>11</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -23,10 +22,33 @@
             <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.10.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.10.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>5.10.2</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -34,7 +56,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>TerminalTTTBasic</mainClass>
+                            <mainClass>vgu.pe2026.ttt.basic.TerminalTTTBasic</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

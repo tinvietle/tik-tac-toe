@@ -1,3 +1,5 @@
+package vgu.pe2026.ttt.basic;
+
 import java.io.PrintStream;
 
 /**

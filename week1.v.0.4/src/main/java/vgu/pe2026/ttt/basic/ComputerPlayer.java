@@ -1,3 +1,5 @@
+package vgu.pe2026.ttt.basic;
+
 /**
  * Computer player that chooses the first free cell (1-9).
  */
